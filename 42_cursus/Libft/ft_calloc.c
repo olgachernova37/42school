@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xxtests.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 15:03:46 by olcherno          #+#    #+#             */
-/*   Updated: 2024/10/03 15:32:34 by olcherno         ###   ########.fr       */
+/*   Created: 2024/10/03 15:48:33 by olcherno          #+#    #+#             */
+/*   Updated: 2024/10/03 15:53:34 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
+#include "libft.h"
 
-
-int	ft_isdigit(int c);
-
-int	main(void)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	c;
+	unsigned char	*temp;
+	size_t			i;
 
-	c = '5';
-	printf("Result when numeric character is passed: %d", ft_isdigit(c));
-	c = '+';
-	printf("\nResult when non-numeric character is passed: %d", ft_isdigit(c));
-	return (0);
+	temp = malloc(count * size);
+	if (!temp)
+		return (NULL);
+	while (i < count * size)
+		temp[i++] = 0;
+	return (temp);
 }

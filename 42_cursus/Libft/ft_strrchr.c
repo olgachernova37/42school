@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xxtests.c                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 15:03:46 by olcherno          #+#    #+#             */
-/*   Updated: 2024/10/03 15:32:34 by olcherno         ###   ########.fr       */
+/*   Created: 2024/10/03 13:43:12 by olcherno          #+#    #+#             */
+/*   Updated: 2024/10/03 15:32:13 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
+#include "libft.h"
 
-
-int	ft_isdigit(int c);
-
-int	main(void)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	c;
+	int				i;
+	char			*last;
+	unsigned char	uc;
 
-	c = '5';
-	printf("Result when numeric character is passed: %d", ft_isdigit(c));
-	c = '+';
-	printf("\nResult when non-numeric character is passed: %d", ft_isdigit(c));
-	return (0);
+	if (!s)
+		return (NULL);
+	last = NULL;
+	i = 0;
+	uc = (unsigned char)c;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)uc)
+			last = (char *)&s[i];
+		i++;
+	}
+	if (uc == '\0')
+		return ((char *)&s[i]);
+	return (last);
 }

@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xxtests.c                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 15:03:46 by olcherno          #+#    #+#             */
-/*   Updated: 2024/10/03 15:32:34 by olcherno         ###   ########.fr       */
+/*   Created: 2024/10/03 13:48:16 by olcherno          #+#    #+#             */
+/*   Updated: 2024/10/03 15:32:30 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
+#include "libft.h"
 
-
-int	ft_isdigit(int c);
-
-int	main(void)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	c;
+	const unsigned char	*us1;
+	const unsigned char	*us2;
 
-	c = '5';
-	printf("Result when numeric character is passed: %d", ft_isdigit(c));
-	c = '+';
-	printf("\nResult when non-numeric character is passed: %d", ft_isdigit(c));
+	if (!s1 || !s2 || n == 0)
+		return (0);
+	us1 = (const unsigned char *)s1;
+	us2 = (const unsigned char *)s2;
+	while (n--)
+	{
+		if (*us1 != *us2)
+			return (*us1 - *us2);
+		us1++;
+		us2++;
+	}
 	return (0);
 }

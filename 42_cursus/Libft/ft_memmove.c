@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xxtests.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 15:03:46 by olcherno          #+#    #+#             */
-/*   Updated: 2024/10/03 15:32:34 by olcherno         ###   ########.fr       */
+/*   Created: 2024/10/03 13:48:56 by olcherno          #+#    #+#             */
+/*   Updated: 2024/10/03 15:32:38 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
+#include "libft.h"
 
-
-int	ft_isdigit(int c);
-
-int	main(void)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	c;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	c = '5';
-	printf("Result when numeric character is passed: %d", ft_isdigit(c));
-	c = '+';
-	printf("\nResult when non-numeric character is passed: %d", ft_isdigit(c));
-	return (0);
+	if (dest == NULL || src == NULL)
+		return (NULL);
+	if (dest == src || n == 0)
+		return (dest);
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	if (d > s)
+	{
+		d += n;
+		s += n;
+		while (n--)
+			*(--d) = *(--s);
+	}
+	else
+	{
+		while (n--)
+			*d++ = *s++;
+	}
+	return (dest);
 }

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xxtests.c                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 15:03:46 by olcherno          #+#    #+#             */
-/*   Updated: 2024/10/03 15:32:34 by olcherno         ###   ########.fr       */
+/*   Created: 2024/10/03 13:47:49 by olcherno          #+#    #+#             */
+/*   Updated: 2024/10/03 15:32:18 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
+#include "libft.h"
 
-
-int	ft_isdigit(int c);
-
-int	main(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	c;
+	const unsigned char	*us;
+	unsigned char		uc;
 
-	c = '5';
-	printf("Result when numeric character is passed: %d", ft_isdigit(c));
-	c = '+';
-	printf("\nResult when non-numeric character is passed: %d", ft_isdigit(c));
-	return (0);
+	if (!s || n == 0)
+		return (NULL);
+	us = (const unsigned char *)s;
+	uc = (unsigned char)c;
+	while (n--)
+	{
+		if (*us == uc)
+			return ((void *)us);
+		us++;
+	}
+	return (NULL);
 }

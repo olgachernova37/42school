@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 16:38:20 by olcherno          #+#    #+#             */
-/*   Updated: 2024/10/03 15:33:01 by olcherno         ###   ########.fr       */
+/*   Created: 2024/10/03 13:52:15 by olcherno          #+#    #+#             */
+/*   Updated: 2024/10/03 15:32:37 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
-	size_t	len_dest;
-	size_t	len_src;
 
-	if (dest == NULL || src == NULL)
-		return (0);
-	len_dest = ft_strlen(dest);
-	len_src = ft_strlen(src);
-	if (size == 0)
-		return (len_src);
-	if (size <= len_dest)
-		return (size + len_src);
-	i = len_dest;
-	j = 0;
-	while (src[j] && (i < size - 1))
+	if (!haystack || !needle)
+		return (NULL);
+	if (*needle == '\0')
+		return ((char *)haystack);
+	i = 0;
+	while (i < len && haystack[i] != '\0')
 	{
-		dest[i] = src[j];
+		if (haystack[i] == needle[0])
+		{
+			j = 0;
+			while (needle[j] != '\0' && (i + j) < len)
+			{
+				if (needle[j] != haystack[i + j])
+					break ;
+				if (needle[j + 1] == '\0')
+					return ((char *)&haystack[i]);
+				j++;
+			}
+		}
 		i++;
-		j++;
 	}
-	dest[i] = '\0';
-	return (len_dest + len_src);
+	return (NULL);
 }
