@@ -6,7 +6,7 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:27:26 by olcherno          #+#    #+#             */
-/*   Updated: 2024/10/03 16:36:53 by olcherno         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:33:49 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 void	*ft_calloc(size_t count, size_t size);
+char	*ft_strdup(const char *s);
 
-char *ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
