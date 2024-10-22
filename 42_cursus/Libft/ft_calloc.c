@@ -6,7 +6,7 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:48:33 by olcherno          #+#    #+#             */
-/*   Updated: 2024/10/03 16:49:38 by olcherno         ###   ########.fr       */
+/*   Updated: 2024/10/06 18:26:39 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	while (i < count * size)
 		temp[i++] = 0;
-	ft_memset(temp, 0, count * size);	
+	ft_memset(temp, 0, count * size);
 	return (temp);
 }
