@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/nfs/homes/olcherno/6.10/Ft_printf",
-      "program": "/nfs/homes/olcherno/6.10/Ft_printf/build/Debug/outDebug",
+      "cwd": "/nfs/homes/olcherno/6.10/42_cursus/test",
+      "program": "/nfs/homes/olcherno/6.10/42_cursus/test/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

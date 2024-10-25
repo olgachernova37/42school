@@ -6,48 +6,61 @@
 /*   By: olcherno <olcherno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:48:05 by olcherno          #+#    #+#             */
-/*   Updated: 2024/10/23 20:19:15 by olcherno         ###   ########.fr       */
+/*   Updated: 2024/10/25 16:04:49 by olcherno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-int print_hexadecimal(unsigned long nbr, char symbol)
+static int	size_hex_address(unsigned long long n)
 {
-  char res[40];
-  int i;
-  if (nbr == 0)
-  {
-    write(1, "0", 1);
-    return(1);
-  }
-  i = 35;
-  res[i] = '\0';
-  i--;
-  while (nbr!=0)
-  {
-    if (symbol == 'x')
-      res[i] = "0123456789abcdef"[nbr % 16];
-    else 
-      res[i] = "0123456789ABCDEF"[nbr % 16];
-    nbr /=16;
-    i--;
-  }
-  i++;
-  while (res[i]!= '\0')
-  {
-    write(1, &res[i], 1);
-    i++;
-  }
-  return(1);
+	int	size;
+
+	size = 0;
+	while (n)
+	{
+		size ++;
+		n /= 16;
+	}
+	return (size);
 }
 
-int	print_address(unsigned long nbr)
+static int	ft_hex_add(unsigned long long n)
 {
-  write(1,"0",1);
-  write(1,"x",1);
-  return print_hexadecimal (nbr, 'x');
+	char	*base_16;
+	int		size;
+
+	size = size_hex_address(n);
+	base_16 = "0123456789abcdef";
+	if (n < 16)
+	{
+		if (print_char(base_16[n]) == -1)
+			return (-1);
+	}
+	else
+	{
+		ft_hex_add(n / 16);
+		ft_hex_add(n % 16);
+	}
+	return (size);
+}
+
+int	print_address(void *ptr)
+{
+	int	n;
+
+	if (ptr == NULL)
+	{
+		print_str("(nil)");
+		return (5);
+	}
+	if (print_str("0x") == -1)
+		return (-1);
+	n = ft_hex_add((unsigned long long)ptr);
+	if (n != 0)
+		return (n + 2);
+	else
+		return (0);
 }
 
 int	print_specifier(char symbol, va_list args)
@@ -63,8 +76,8 @@ int	print_specifier(char symbol, va_list args)
 		counter += print_nbr(va_arg(args, int));
 	else if (symbol == 'u')
 		counter += unsigned_print_nbr(va_arg(args, unsigned int));
- 	else if (symbol == 'p')
-		counter += print_address(va_arg(args, unsigned long)); 
+	else if (symbol == 'p')
+		counter += print_address(va_arg(args, void *));
 	else if (symbol == 'x' || symbol == 'X')
 		counter += print_hexadecimal(va_arg(args, unsigned long), symbol);
 	else
